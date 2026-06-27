@@ -1,0 +1,12 @@
+# Streambert
+-keep class com.streambert.app.data.model.** { *; }
+-keep class com.streambert.app.data.api.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepattributes EnclosingMethod
+-keepattributes InnerClasses
+-keep class com.google.gson.** { *; }
+-keep class com.streambert.app.data.model.*$* { *; }
+-dontwarn kotlinx.coroutines.**
+-dontwarn okhttp3.**
+-dontwarn retrofit2.**
