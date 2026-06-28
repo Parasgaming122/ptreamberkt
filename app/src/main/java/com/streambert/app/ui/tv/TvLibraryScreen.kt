@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -16,6 +17,7 @@ import androidx.navigation.NavController
 import com.streambert.app.data.local.Prefs
 import com.streambert.app.data.model.HistoryEntry
 import com.streambert.app.ui.navigation.Routes
+import kotlinx.coroutines.flow.collectAsState
 
 @Composable
 fun TvLibraryScreen(navController: NavController) {
@@ -34,7 +36,7 @@ fun TvLibraryScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         if (watchlist.isEmpty() && history.isEmpty()) {
-            Box(Modifier.fillMaxSize(), contentAlignment = androidx.compose.ui.Alignment.Center) {
+            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 Text("Nothing here yet", color = Color(0xFF888888), fontSize = 16.sp)
             }
         } else {

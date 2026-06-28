@@ -34,6 +34,7 @@ import com.streambert.app.data.api.imgUrl
 import com.streambert.app.data.api.isAnimeContent
 import com.streambert.app.data.model.MediaItem
 import com.streambert.app.ui.navigation.Routes
+import kotlinx.coroutines.flow.collectAsState
 
 @Composable
 fun TvHomeScreen(navController: NavController) {

@@ -91,11 +91,12 @@ fun SetupScreen(
                 }
                 loading = true
                 com.streambert.app.data.repository.MediaRepository.configureApi(apiKey, "en-US")
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                kotlinx.coroutines.MainScope().launch {
+                    kotlinx.coroutines.delay(500)
                     loading = false
                     com.streambert.app.data.local.Prefs.setTmdbKey(ctx, apiKey)
                     onSetupComplete()
-                }, 500)
+                }
             },
             modifier = Modifier.fillMaxWidth().height(50.dp),
             enabled = apiKey.isNotBlank() && !loading,

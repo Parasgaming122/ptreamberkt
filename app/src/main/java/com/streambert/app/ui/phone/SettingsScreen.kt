@@ -68,7 +68,7 @@ fun SettingsScreen(navController: NavController) {
         // TMDB API Read Access Token (Bearer)
         SettingsTextField(
             label = "TMDB API Read Access Token (Bearer)",
-            value = vm.tmdbKey,
+            value = vm.tmdbKey.value,
             onValueChange = { vm.tmdbKey.value = it },
             isSecret = true,
         )

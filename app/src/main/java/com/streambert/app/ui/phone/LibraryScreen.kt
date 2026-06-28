@@ -31,6 +31,7 @@ import com.streambert.app.data.repository.MediaRepository
 import com.streambert.app.ui.navigation.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -189,13 +190,13 @@ fun WatchlistRow(item: SavedItem, onClick: () -> Unit) {
 
 class LibraryViewModel : ViewModel() {
     private val _continueWatching = MutableStateFlow<List<HistoryEntry>>(emptyList())
-    val continueWatching: State<List<HistoryEntry>> = _continueWatching
+    val continueWatching: StateFlow<List<HistoryEntry>> = _continueWatching
 
     private val _watchlist = MutableStateFlow<List<SavedItem>>(emptyList())
-    val watchlist: State<List<SavedItem>> = _watchlist
+    val watchlist: StateFlow<List<SavedItem>> = _watchlist
 
     private val _history = MutableStateFlow<List<HistoryEntry>>(emptyList())
-    val history: State<List<HistoryEntry>> = _history
+    val history: StateFlow<List<HistoryEntry>> = _history
 
     fun load(ctx: android.content.Context) {
         viewModelScope.launch {

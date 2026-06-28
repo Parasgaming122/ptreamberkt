@@ -68,7 +68,7 @@ fun TvDetailScreen(navController: NavController, mediaId: Int, mediaType: String
                         val focusReq = remember { FocusRequester() }
                         IconButton(
                             onClick = { navController.popBackStack() },
-                            modifier = Modifier.padding(12.dp).background(Color.Black.copy(alpha = 0.5f), MaterialTheme.shapes.circle)
+                            modifier = Modifier.padding(12.dp).background(Color.Black.copy(alpha = 0.5f), androidx.compose.foundation.shape.CircleShape)
                                 .focusRequester(focusReq).focusable(),
                         ) {
                             Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)

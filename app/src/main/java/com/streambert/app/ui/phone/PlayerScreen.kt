@@ -27,6 +27,7 @@ import com.streambert.app.data.local.Prefs
 import com.streambert.app.player.PlayerState
 import com.streambert.app.player.VideoViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectAsState
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnsafeOptInUsageError")

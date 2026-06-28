@@ -19,6 +19,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.streambert.app.data.local.Prefs
 import com.streambert.app.data.repository.MediaRepository
@@ -69,7 +71,7 @@ class MainActivity : ComponentActivity() {
                             navController = navController,
                             startDestination = "setup"
                         ) {
-                            composable("setup") {
+                            androidx.navigation.compose.composable("setup") {
                                 com.streambert.app.ui.phone.SetupScreen(
                                     navController = navController,
                                     onSetupComplete = {

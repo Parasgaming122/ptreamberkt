@@ -385,7 +385,7 @@ object Prefs {
     // ── Backup/Restore ──
     suspend fun exportAll(ctx: Context): String {
         val data = ctx.dataStore.data.first().asMap()
-            .filterKeys { it != IS_TV_MODE.name && it != SETUP_DONE.name }
+            .filterKeys { it.name != IS_TV_MODE.name && it.name != SETUP_DONE.name }
             .mapKeys { it.key.name }
         return gson.toJson(data)
     }

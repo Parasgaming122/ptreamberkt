@@ -32,6 +32,7 @@ import com.streambert.app.data.local.Prefs
 import com.streambert.app.data.model.MediaItem
 import com.streambert.app.data.repository.MediaRepository
 import com.streambert.app.ui.navigation.Routes
+import kotlinx.coroutines.flow.collectAsState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -146,8 +147,8 @@ fun HomeScreen(navController: NavController) {
                             onClick = { navController.navigate(Routes.detail(hero.id, hero.mediaType)) },
                             colors = ButtonDefaults.outlinedButtonColors(
                                 contentColor = Color.White,
-                                borderColor = Color.White.copy(alpha = 0.4f),
                             ),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.4f)),
                         ) {
                             Text("More Info")
                         }

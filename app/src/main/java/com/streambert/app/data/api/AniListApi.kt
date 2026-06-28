@@ -130,7 +130,7 @@ query (${'$'}search: String, ${'$'}type: MediaType) {
         if (desc.isNullOrEmpty()) return ""
         var clean = desc.split("<").mapIndexed { i, chunk ->
             if (i == 0) chunk else chunk.indexOf(">").let { idx -> if (idx >= 0) chunk.substring(idx + 1) else chunk }
-        }.join("").replace(">", "")
+        }.joinToString("").replace(">", "")
         clean = clean.replace(Regex("\\(Source:[^)]*\\)", RegexOption.IGNORE_CASE), "")
         clean = clean.replace(Regex("\\bNote:[^\\n]*", RegexOption.IGNORE_CASE), "")
         return clean.trim()
