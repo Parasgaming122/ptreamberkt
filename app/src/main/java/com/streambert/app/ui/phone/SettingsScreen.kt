@@ -26,7 +26,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.streambert.app.data.api.AccentPresets
+import com.streambert.app.ui.theme.AccentPresets
 import com.streambert.app.data.local.Prefs
 import com.streambert.app.data.repository.MediaRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -92,9 +92,10 @@ fun SettingsScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(4.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             AccentPresets.all.forEach { (name, color) ->
-                val selected = accentColor == color.toString()
+                val colorHex = "#%06X".format((color.value shr 32).toInt() and 0x00FFFFFF)
+                val selected = accentColor == colorHex
                 Surface(
-                    modifier = Modifier.size(40.dp).clickable { vm.setAccent(ctx, color.toString()) },
+                    modifier = Modifier.size(40.dp).clickable { vm.setAccent(ctx, colorHex) },
                     shape = MaterialTheme.shapes.medium,
                     color = color,
                     border = if (selected) androidx.compose.foundation.BorderStroke(3.dp, Color.White) else null,

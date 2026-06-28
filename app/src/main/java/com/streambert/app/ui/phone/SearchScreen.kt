@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.streambert.app.data.api.imgUrl
@@ -180,7 +182,7 @@ fun SearchResultRow(item: MediaItem, onClick: () -> Unit) {
     }
 }
 
-class SearchViewModel : androidx.lifecycle.ViewModel() {
+class SearchViewModel : ViewModel() {
     private val _query = mutableStateOf("")
     val query: State<String> = _query
 
@@ -196,7 +198,7 @@ class SearchViewModel : androidx.lifecycle.ViewModel() {
     private var searchJob: Job? = null
 
     fun loadHistory(ctx: android.content.Context) {
-        androidx.lifecycle.viewModelScope.launch {
+        viewModelScope.launch {
             _searchHistory.value = com.streambert.app.data.local.Prefs.getSearchHistory(ctx)
         }
     }
@@ -208,7 +210,7 @@ class SearchViewModel : androidx.lifecycle.ViewModel() {
             _results.value = emptyList()
             return
         }
-        searchJob = androidx.lifecycle.viewModelScope.launch {
+        searchJob = viewModelScope.launch {
             delay(380) // Debounce matching Streambert
             _loading.value = true
             try {
@@ -219,14 +221,14 @@ class SearchViewModel : androidx.lifecycle.ViewModel() {
     }
 
     fun removeHistoryTerm(term: String, ctx: android.content.Context) {
-        androidx.lifecycle.viewModelScope.launch {
+        viewModelScope.launch {
             com.streambert.app.data.local.Prefs.removeSearchTerm(ctx, term)
             _searchHistory.value = com.streambert.app.data.local.Prefs.getSearchHistory(ctx)
         }
     }
 
     fun clearHistory(ctx: android.content.Context) {
-        androidx.lifecycle.viewModelScope.launch {
+        viewModelScope.launch {
             com.streambert.app.data.local.Prefs.clearSearchHistory(ctx)
             _searchHistory.value = emptyList()
         }

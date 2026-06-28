@@ -29,7 +29,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Streambert"
-        tools:targetApi="34">
+        tools:targetApi="35">
 
         <activity
             android:name=".MainActivity"
